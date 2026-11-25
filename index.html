@@ -76,7 +76,7 @@
 
 /* ---------- RESET ---------- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{
   font-family:var(--font-body);
   color:var(--text);
@@ -103,10 +103,10 @@ a{color:inherit;text-decoration:none}
 /* ============================================================
    BACKGROUND — STARFIELD + ORBS + GRID
    ============================================================ */
-.bg-layer{position:fixed;inset:0;z-index:-3;pointer-events:none}
-#stars{position:fixed;inset:0;z-index:-2;pointer-events:none}
+.bg-layer{position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden}
+#stars{position:absolute;inset:0;pointer-events:none}
 
-.orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:-2;pointer-events:none;mix-blend-mode:screen}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;mix-blend-mode:screen}
 [data-theme="light"] .orb{opacity:.45;mix-blend-mode:multiply}
 .orb.o1{width:480px;height:480px;background:radial-gradient(circle,#7c5cff,transparent 70%);top:-120px;right:-80px;animation:float1 22s var(--ease) infinite}
 .orb.o2{width:520px;height:520px;background:radial-gradient(circle,#22d3ee,transparent 70%);bottom:-160px;left:-120px;animation:float2 28s var(--ease) infinite}
@@ -119,7 +119,7 @@ a{color:inherit;text-decoration:none}
 
 /* faint grid overlay */
 .grid-overlay{
-  position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.35;
+  position:absolute;inset:0;pointer-events:none;opacity:.35;
   background-image:
     linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
@@ -740,6 +740,83 @@ footer .f-heart{color:var(--accent-3);display:inline-block;animation:beat 1.2s i
   .reward{padding:20px}
 }
 
+/* ============================================================
+   ÍCONES SVG (line icons) + MOBILE FIRST
+   ============================================================ */
+html{-webkit-tap-highlight-color:transparent}
+body{touch-action:manipulation}
+.ico{display:inline-block;width:1.1rem;height:1.1rem;vertical-align:-0.15em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.card-icon{color:#fff}
+.card-icon .ico{width:1.7rem;height:1.7rem}
+.vtile .vic .ico{width:2.4rem;height:2.4rem;color:#fff}
+.principle .pic .ico{width:2.2rem;height:2.2rem}
+.habit .hicon .ico{width:1.25rem;height:1.25rem;color:var(--accent-2)}
+.habit.done .hicon .ico{color:var(--good)}
+.reward .ric .ico{width:2.6rem;height:2.6rem;color:var(--text)}
+.reward.unlocked .ric .ico{color:#fff}
+.reward .rlock .ico{width:1rem;height:1rem}
+.focus-cell .fm-icon .ico{width:1.35rem;height:1.35rem}
+.tl-month .m-icon .ico{width:1.5rem;height:1.5rem;color:var(--accent-2)}
+.stat .ic .ico{width:1.15rem;height:1.15rem;color:var(--accent)}
+.nav-btn .ico{width:1.15rem;height:1.15rem}
+.toast .ic{display:inline-flex;align-items:center;justify-content:center}
+.toast .ic .ico{width:1.2rem;height:1.2rem}
+.mb-emoji .ico{width:1.9rem;height:1.9rem;color:var(--accent-2)}
+.habit-streak-card .flame .ico{width:2.8rem;height:2.8rem;color:#f59e0b;filter:drop-shadow(0 0 10px rgba(245,158,11,.5))}
+.habit-reset .ico{width:.95rem;height:.95rem;vertical-align:-0.12em;margin-right:4px}
+.q-mark,.panel-title .ic{line-height:0}
+
+/* grids anti-overflow (mobile first) */
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.vision-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr))}
+
+@media (max-width:560px){
+  .nav{padding:9px 12px}
+  .nav-brand{font-size:.92rem;gap:9px}
+  .nav-brand .logo{width:34px;height:34px;font-size:1rem}
+  .nav-actions{gap:5px}
+  .nav-btn{width:38px;height:38px;border-radius:11px}
+  .nav-btn .ico{width:1.1rem;height:1.1rem}
+  .hero{min-height:auto;padding:96px 0 34px}
+  .countdown{gap:7px;margin:26px 0 18px}
+  .cd-unit{min-width:62px;padding:13px 6px}
+  .cd-num{font-size:1.45rem}
+  .cd-label{font-size:.58rem;letter-spacing:.14em;margin-top:6px}
+  .hero-cta{flex-direction:row}
+  .hero-cta .btn{padding:12px 18px;font-size:.88rem;flex:1;justify-content:center}
+  .panel{padding:18px}
+  .ring-big{width:172px;height:172px}
+  .stat{padding:14px}
+  .stat .val{font-size:1.5rem}
+  .stat .ic{width:34px;height:34px}
+  .cat-row{grid-template-columns:80px 1fr 34px;gap:8px}
+  .cat-row .name{font-size:.74rem}
+  .focus-map{gap:6px}
+  .focus-cell .fm-t{display:none}
+  .focus-cell{aspect-ratio:1/1}
+  .tl-month{width:128px;padding:14px}
+  .manifesto{padding:18px}
+  .commit{padding:13px}
+  .reward{padding:18px}
+  .principle{padding:18px 12px}
+  .shortcut{padding:10px 12px}
+  .sec-head{margin:46px 0 22px}
+  .sec-head p{font-size:.92rem}
+  .toast{padding:12px 16px;font-size:.85rem}
+  .toast-wrap{bottom:16px;width:94vw}
+}
+@media (max-width:380px){
+  .nav-brand>div:not(.logo){display:none}
+  .nav-brand .logo{width:32px;height:32px}
+  .cd-unit{min-width:54px;padding:11px 4px}
+  .cd-num{font-size:1.25rem}
+  .hero h1{font-size:2rem}
+  .hero .year{font-size:3.6rem}
+  .stats{gap:10px}
+  .principles{grid-template-columns:repeat(2,1fr)}
+  .hero-cta .btn{font-size:.82rem;padding:11px 14px}
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -853,17 +930,60 @@ section[id]{scroll-margin-top:90px}
 </div>
 
 <!-- ===== BACKGROUND ===== -->
-<div class="bg-layer"></div>
-<canvas id="stars"></canvas>
-<div class="grid-overlay"></div>
-<div class="orb o1"></div>
-<div class="orb o2"></div>
-<div class="orb o3"></div>
-<div class="orb o4"></div>
+<div class="bg-layer">
+  <canvas id="stars"></canvas>
+  <div class="grid-overlay"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="orb o4"></div>
+</div>
 
 <!-- ===== CURSOR ===== -->
 <div class="cursor-ring" id="cRing"></div>
 <div class="cursor-dot" id="cDot"></div>
+
+<!-- ===== SVG ICON SPRITE ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-gamepad" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r=".9" fill="currentColor" stroke="none"/><circle cx="18" cy="13" r=".9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-joystick" viewBox="0 0 24 24"><rect x="6" y="14" width="12" height="6" rx="2"/><path d="M12 14V9"/><circle cx="12" cy="6.5" r="2.2"/><circle cx="9.5" cy="17" r=".7" fill="currentColor" stroke="none"/><circle cx="14.5" cy="17" r=".7" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5a2.12 2.12 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8L7 10.5l-2 2-2.5-.5a.5.5 0 0 0-.4.9l1.5 2.2a.5.5 0 0 0 .4.2h3l2 2 2 2v3a.5.5 0 0 0 .9.3l.5-2.5 2-2 3.5 3a.5.5 0 0 0 .9-.5Z"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H6c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-id-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5.5 16c.3-1.4 1.3-2.3 2.5-2.3s2.2.9 2.5 2.3"/><path d="M14 9h5M14 12h5M14 15h3"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v15"/></symbol>
+  <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5"/><path d="M22 10v6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3 5.5 5.5 0 0 0 12 6 5.5 5.5 0 0 0 7.5 3 5.5 5.5 0 0 0 1 8.5c0 2.3 1.5 4 3 5.5l8 8Z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2h12M6 22h12"/><path d="M6 2c0 4 6 7 6 10 0 3-6 6-6 10"/><path d="M18 2c0 4-6 7-6 10 0 3 6 6 6 10"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 4.9L18.7 9.7 13.8 11.5 12 16.4 10.2 11.5 5.3 9.7 10.2 7.9 12 3Z"/><path d="M18.5 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 2.7s5.5 5 5.5 9.8a5.5 5.5 0 0 1-11 0c0-4.8 5.5-9.8 5.5-9.8Z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.9"/></symbol>
+  <symbol id="i-phone-off" viewBox="0 0 24 24"><path d="M10.7 13.3a10 10 0 0 0 3.2 2.2l1.7-1.3a2 2 0 0 1 2-.2 16 16 0 0 0 3 .9 2 2 0 0 1 1.6 2v3a2 2 0 0 1-2 2A20 20 0 0 1 3 5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 1.6 16 16 0 0 0 .9 3 2 2 0 0 1-.2 2L9.5 11"/><path d="M22 2 2 22"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M7 20h10"/><path d="M12 20v-8"/><path d="M12 12C12 8.5 9.5 6.5 6 6.5c0 3.5 2.5 5.5 6 5.5Z"/><path d="M12 12c0-3.5 2.5-5.5 6-5.5 0 3.5-2.5 5.5-6 5.5Z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8a2 2 0 0 0-3 .2Z"/><path d="M12 15 9 12c.5-2.5 2-5 4.5-7.5C16 2 19 2 21 2c0 2 0 5-2.5 7.5C16 12 13.5 13.5 12 15Z"/><circle cx="15" cy="9" r="1.2"/><path d="M9 12 4.5 16.5"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="m2 4 3 12h14l3-12-6 7-4-8-4 8-6-7Z"/><path d="M5 20h14"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.2A2 2 0 0 0 8 20h8a2 2 0 0 0-1.03-1.8c-.5-.22-.97-.65-.97-1.2v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-trending" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 21h20L12 3Z"/><path d="M12 9v5"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.9 1 1.5 1 2.5h6c0-1 .2-1.6 1-2.5A6 6 0 0 0 12 3Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></symbol>
+</svg>
 
 <!-- ===== NAVBAR ===== -->
 <nav class="nav" id="nav">
@@ -872,11 +992,11 @@ section[id]{scroll-margin-top:90px}
     <div>Objetivos 2027<small>Painel de Conquistas</small></div>
   </div>
   <div class="nav-actions">
-    <button class="nav-btn" id="exportBtn" title="Exportar progresso (JSON)"><span class="ic">⬇</span></button>
-    <button class="nav-btn" id="importBtn" title="Importar progresso (JSON)"><span class="ic">⬆</span></button>
+    <button class="nav-btn" id="exportBtn" title="Exportar progresso (JSON)" aria-label="Exportar"><svg class="ico"><use href="#i-download"></use></svg></button>
+    <button class="nav-btn" id="importBtn" title="Importar progresso (JSON)" aria-label="Importar"><svg class="ico"><use href="#i-upload"></use></svg></button>
     <input type="file" id="importFile" accept="application/json" hidden>
-    <button class="nav-btn" id="resetBtn" title="Reiniciar tudo"><span class="ic">↺</span></button>
-    <button class="nav-btn" id="themeBtn" title="Alternar tema"><span class="ic">◐</span></button>
+    <button class="nav-btn" id="resetBtn" title="Reiniciar tudo" aria-label="Reiniciar"><svg class="ico"><use href="#i-rotate"></use></svg></button>
+    <button class="nav-btn" id="themeBtn" title="Alternar tema" aria-label="Alternar tema"><svg class="ico"><use href="#i-sun"></use></svg></button>
   </div>
 </nav>
 
@@ -885,7 +1005,7 @@ section[id]{scroll-margin-top:90px}
   <span class="kicker"><span class="dot"></span> Plano de Vida · Ano Novo</span>
   <h1>Meus Objetivos</h1>
   <div class="year">2027</div>
-  <p class="lede">Sete metas importantes para conquistar, viver e celebrar. Cada uma com seus <b>marcos</b>, cada marco um passo mais perto de um ano inesquecível. <b>Marque, escreva, complete.</b></p>
+  <p class="lede">Oito metas importantes para conquistar, viver e celebrar. Cada uma com seus <b>marcos</b>, cada marco um passo mais perto de um ano inesquecível. <b>Marque, escreva, complete.</b></p>
 
   <div class="countdown" id="countdown" aria-label="Contagem regressiva para 2027">
     <div class="cd-unit"><div class="cd-num" id="cdD">000</div><div class="cd-label">Dias</div></div>
@@ -908,7 +1028,7 @@ section[id]{scroll-margin-top:90px}
     <div class="sec-head reveal">
       <span class="tag">Dashboard</span>
       <h2>Seu progresso em tempo real</h2>
-      <p>Veja onde você está em cada categoria e quantos marcos já cruzou no caminho dos 7 objetivos.</p>
+      <p>Veja onde você está em cada categoria e quantos marcos já cruzou no caminho dos 8 objetivos.</p>
     </div>
 
     <div class="dashboard">
@@ -932,7 +1052,7 @@ section[id]{scroll-margin-top:90px}
             <div class="lbl">Concluído</div>
           </div>
         </div>
-        <div class="ring-caption">Você completou <b id="bigDone">0</b> de <b>7</b> objetivos e <b id="bigMs">0</b> de <b>28</b> marcos.</div>
+        <div class="ring-caption">Você completou <b id="bigDone">0</b> de <b id="bigGoalsTotal">8</b> objetivos e <b id="bigMs">0</b> de <b id="bigMsTotal">32</b> marcos.</div>
       </div>
 
       <!-- stats + breakdown -->
@@ -942,24 +1062,24 @@ section[id]{scroll-margin-top:90px}
 
         <div class="stats">
           <div class="stat">
-            <div class="top"><div class="ic">🏆</div></div>
-            <div class="val" id="stDone">0<small>/7</small></div>
+            <div class="top"><div class="ic"><svg class="ico"><use href="#i-trophy"></use></svg></div></div>
+            <div class="val" id="stDone">0<small>/8</small></div>
             <div class="name">Objetivos concluídos</div>
             <div class="mini-bar"><i id="stDoneBar"></i></div>
           </div>
           <div class="stat">
-            <div class="top"><div class="ic">✅</div></div>
-            <div class="val" id="stMs">0<small>/28</small></div>
+            <div class="top"><div class="ic"><svg class="ico"><use href="#i-check-circle"></use></svg></div></div>
+            <div class="val" id="stMs">0<small>/32</small></div>
             <div class="name">Marcos concluídos</div>
             <div class="mini-bar"><i id="stMsBar"></i></div>
           </div>
           <div class="stat">
-            <div class="top"><div class="ic">⏳</div></div>
+            <div class="top"><div class="ic"><svg class="ico"><use href="#i-hourglass"></use></svg></div></div>
             <div class="val" id="stDays">—</div>
             <div class="name">Dias até 2027</div>
           </div>
           <div class="stat">
-            <div class="top"><div class="ic">🔥</div></div>
+            <div class="top"><div class="ic"><svg class="ico"><use href="#i-trending"></use></svg></div></div>
             <div class="val" id="stStreak">0<small>%</small></div>
             <div class="name">Seu ritmo</div>
             <div class="mini-bar"><i id="stStreakBar"></i></div>
@@ -977,7 +1097,7 @@ section[id]{scroll-margin-top:90px}
 <section id="metas">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="tag">As 7 Metas</span>
+      <span class="tag">As 8 Metas</span>
       <h2>O ano que vou conquistar</h2>
       <p>Cada objetivo tem 4 marcos. Clique nos marcos conforme avançar, escreva uma nota pessoal e acompanhe sua barra de progresso crescer.</p>
     </div>
@@ -992,7 +1112,7 @@ section[id]{scroll-margin-top:90px}
 <section class="reveal">
   <div class="wrap">
     <div class="motiv-banner">
-      <span class="mb-emoji">🚀</span>
+      <span class="mb-emoji"><svg class="ico"><use href="#i-rocket"></use></svg></span>
       <p class="mb-text">Cada marco riscado é um pedacinho do 2027 que já virou realidade.</p>
       <p class="mb-sub">Volte aqui sempre que a preguiça bater — lembre por que você começou.</p>
     </div>
@@ -1091,11 +1211,11 @@ section[id]{scroll-margin-top:90px}
     <div class="habits-panel reveal">
       <div class="habit-list" id="habitList"></div>
       <div class="habit-streak-card">
-        <div class="flame">🔥</div>
+        <div class="flame"><svg class="ico"><use href="#i-flame"></use></svg></div>
         <div class="snum" id="habitDone">0</div>
         <div class="slabel">Hábitos hoje</div>
         <div class="sdesc">Pequenos passos, todos os dias, constroem um ano gigante.</div>
-        <button class="habit-reset" id="habitReset">↺ Zerar o dia</button>
+        <button class="habit-reset" id="habitReset"><svg class="ico"><use href="#i-rotate"></use></svg> Zerar o dia</button>
       </div>
     </div>
   </div>
@@ -1147,7 +1267,7 @@ section[id]{scroll-margin-top:90px}
 <footer>
   <div class="wrap">
     <p class="f-quote">"O futuro pertence a quem acredita na beleza dos próprios sonhos."</p>
-    <p class="f-meta">Feito com <span class="f-heart">♥</span> para acompanhar a sua jornada em <b>2027</b> · Seu progresso fica salvo neste navegador.</p>
+    <p class="f-meta">Feito com <svg class="ico f-heart" aria-hidden="true"><use href="#i-heart"></use></svg> para acompanhar a sua jornada em <b>2027</b> · Seu progresso fica salvo neste navegador.</p>
   </div>
 </footer>
 
@@ -1163,7 +1283,7 @@ section[id]{scroll-margin-top:90px}
 /* ---------- DATA ---------- */
 const GOALS = [
   {
-    id:"ps5", icon:"🎮", title:"PlayStation 5", cat:"Conquista",
+    id:"ps5", icon:"gamepad", title:"PlayStation 5", cat:"Conquista",
     color:"#3b82f6", soft:"rgba(59,130,246,.22)", line:"rgba(59,130,246,.45)",
     desc:"Comprar meu próprio PS5 e mergulhar na nova geração de jogos com gráficos de tirar o fôlego.",
     quote:"Os melhores mundos são os que podemos habitar.",
@@ -1175,7 +1295,7 @@ const GOALS = [
     ]
   },
   {
-    id:"auto", icon:"🚗", title:"Automóvel próprio", cat:"Patrimônio",
+    id:"auto", icon:"car", title:"Automóvel próprio", cat:"Patrimônio",
     color:"#f59e0b", soft:"rgba(245,158,11,.22)", line:"rgba(245,158,11,.45)",
     desc:"Adquirir um carro ou moto para ganhar mobilidade, independência e liberdade de ir e vir.",
     quote:"A estrada não acaba — só quem desiste dela.",
@@ -1187,7 +1307,19 @@ const GOALS = [
     ]
   },
   {
-    id:"trabalho", icon:"💼", title:"Trabalhar", cat:"Profissional",
+    id:"cnh", icon:"id-card", title:"Tirar a CNH", cat:"Patrimônio",
+    color:"#14b8a6", soft:"rgba(20,184,166,.22)", line:"rgba(20,184,166,.45)",
+    desc:"Conseguir a Carteira Nacional de Habilitação para dirigir com legalidade e abrir as portas para o automóvel.",
+    quote:"Liberdade tem endereço: é a carteira na sua mão.",
+    milestones:[
+      "Inscrever-se na autoescola e iniciar o processo",
+      "Cursar e concluir as aulas teóricas",
+      "Cursar e concluir as aulas práticas",
+      "Passar na prova prática e retirar a CNH"
+    ]
+  },
+  {
+    id:"trabalho", icon:"briefcase", title:"Trabalhar", cat:"Profissional",
     color:"#34d399", soft:"rgba(52,211,153,.22)", line:"rgba(52,211,153,.45)",
     desc:"Manter-me ativo profissionalmente, gerando renda, experiência e construindo o meu futuro.",
     quote:"Trabalhe enquanto eles sonham.",
@@ -1199,7 +1331,7 @@ const GOALS = [
     ]
   },
   {
-    id:"faculdade", icon:"🎓", title:"Continuar bem na faculdade", cat:"Estudos",
+    id:"faculdade", icon:"graduation", title:"Continuar bem na faculdade", cat:"Estudos",
     color:"#a78bfa", soft:"rgba(167,139,250,.22)", line:"rgba(167,139,250,.45)",
     desc:"Manter boas notas e dedicação aos estudos, ficando cada vez mais perto da formatura.",
     quote:"O conhecimento é a única coisa que ninguém tira de você.",
@@ -1211,7 +1343,7 @@ const GOALS = [
     ]
   },
   {
-    id:"namoro", icon:"❤️", title:"Continuar bem no namoro", cat:"Relacionamento",
+    id:"namoro", icon:"heart", title:"Continuar bem no namoro", cat:"Relacionamento",
     color:"#fb7185", soft:"rgba(251,113,133,.22)", line:"rgba(251,113,133,.45)",
     desc:"Cuidar do relacionamento com amor, diálogo e parceria — cultivando algo bonito e saudável.",
     quote:"O amor se constrói nos pequenos dias.",
@@ -1223,7 +1355,7 @@ const GOALS = [
     ]
   },
   {
-    id:"jogos", icon:"🕹️", title:"Jogar os jogos dos sonhos", cat:"Lazer",
+    id:"jogos", icon:"joystick", title:"Jogar os jogos dos sonhos", cat:"Lazer",
     color:"#f472b6", soft:"rgba(244,114,182,.22)", line:"rgba(244,114,182,.45)",
     desc:"Jogar GTA VI, The Last of Us e Red Dead Redemption — os títulos que sempre tive vontade de viver.",
     quote:"Cada jogo é uma vida que ainda não foi vivida.",
@@ -1235,7 +1367,7 @@ const GOALS = [
     ]
   },
   {
-    id:"viagem", icon:"✈️", title:"Viajar para outro estado", cat:"Experiência",
+    id:"viagem", icon:"plane", title:"Viajar para outro estado", cat:"Experiência",
     color:"#22d3ee", soft:"rgba(34,211,238,.22)", line:"rgba(34,211,238,.45)",
     desc:"Conhecer um novo estado do Brasil e viver uma viagem inesquecível, cheia de descobertas.",
     quote:"O mundo é um livro — quem não viaja lê só uma página.",
@@ -1248,7 +1380,7 @@ const GOALS = [
   }
 ];
 
-const TOTAL_MS = GOALS.reduce((s,g)=>s+g.milestones.length,0); // 28
+const TOTAL_MS = GOALS.reduce((s,g)=>s+g.milestones.length,0); // 32
 
 const QUOTES = [
   {text:"O futuro pertence a quem acredita na beleza dos próprios sonhos.", author:"Eleanor Roosevelt"},
@@ -1270,18 +1402,18 @@ const QUOTES = [
 ];
 
 const TIMELINE = [
-  {m:"Janeiro",n:"01",icon:"🎆",text:"Arranque do ano. Plantar as metas e definir os primeiros marcos."},
-  {m:"Fevereiro",n:"02",icon:"📝",text:"Organização: currículo, cronograma de estudos e pesquisa do PS5."},
-  {m:"Março",n:"03",icon:"🌱",text:"Primeiros passos concretos. Juntar entradas e começar bem a faculdade."},
-  {m:"Abril",n:"04",icon:"💼",text:"Trabalho em ritmo. Receber os primeiros salários do ano."},
-  {m:"Maio",n:"05",icon:"🎮",text:"Comprar o PS5 e iniciar a saga dos jogos dos sonhos."},
-  {m:"Junho",n:"06",icon:"❤️",text:"Data especial a dois. Cultivar o namoro com momentos juntos."},
-  {m:"Julho",n:"07",icon:"🏖️",text:"Férias — primeira janela para a viagem a outro estado."},
-  {m:"Agosto",n:"08",icon:"🚗",text:"Fechar o automóvel. Emplacar e ganhar a estrada."},
-  {m:"Setembro",n:"09",icon:"📚",text:"Segundo semestre na faculdade: manter as notas e o foco."},
-  {m:"Outubro",n:"10",icon:"🏜️",text:"Red Dead Redemption e The Last of Us: imersão total."},
-  {m:"Novembro",n:"11",icon:"🏆",text:"Conferir o que falta. Fechar marcos pendentes e comemorar."},
-  {m:"Dezembro",n:"12",icon:"🎉",text:"Balanço do ano. Todos os 7 objetivos riscados — 2027 conquistado!"}
+  {m:"Janeiro",n:"01",icon:"sparkles",text:"Arranque do ano. Plantar as metas e definir os primeiros marcos."},
+  {m:"Fevereiro",n:"02",icon:"edit",text:"Organização: currículo, cronograma de estudos e autoescola."},
+  {m:"Março",n:"03",icon:"sprout",text:"Começar a CNH e juntar as primeiras entradas do ano."},
+  {m:"Abril",n:"04",icon:"briefcase",text:"Trabalho em ritmo. Receber os primeiros salários do ano."},
+  {m:"Maio",n:"05",icon:"gamepad",text:"Comprar o PS5 e iniciar a saga dos jogos dos sonhos."},
+  {m:"Junho",n:"06",icon:"heart",text:"Data especial a dois. Cultivar o namoro com momentos juntos."},
+  {m:"Julho",n:"07",icon:"plane",text:"Férias — primeira janela para a viagem a outro estado."},
+  {m:"Agosto",n:"08",icon:"car",text:"Fechar o automóvel. Emplacar e ganhar a estrada."},
+  {m:"Setembro",n:"09",icon:"book",text:"Segundo semestre na faculdade: manter as notas e o foco."},
+  {m:"Outubro",n:"10",icon:"joystick",text:"Red Dead Redemption e The Last of Us: imersão total."},
+  {m:"Novembro",n:"11",icon:"target",text:"Conferir o que falta. Fechar marcos pendentes e comemorar."},
+  {m:"Dezembro",n:"12",icon:"trophy",text:"Balanço do ano. Todos os 8 objetivos riscados — 2027 conquistado!"}
 ];
 
 /* ---------- STATE ---------- */
@@ -1327,12 +1459,13 @@ function el(tag,cls,html){
   if(html!=null) e.innerHTML=html;
   return e;
 }
+function icon(key){ return `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${key}"></use></svg>`; }
 
 /* ---------- TOAST ---------- */
 function toast(msg,opts={}){
   const wrap = $("#toastWrap");
   const t = el("div","toast"+(opts.good?" good":""));
-  t.innerHTML = `<span class="ic">${opts.icon||"✨"}</span><span>${msg}</span><span class="close">×</span>`;
+  t.innerHTML = `<span class="ic">${icon(opts.icon||"sparkles")}</span><span>${msg}</span><span class="close">×</span>`;
   wrap.appendChild(t);
   requestAnimationFrame(()=>t.classList.add("show"));
   const close=()=>{ t.classList.remove("show"); setTimeout(()=>t.remove(),450); };
@@ -1392,7 +1525,7 @@ function renderGoals(){
 
     card.innerHTML = `
       <div class="card-head">
-        <div class="card-icon">${g.icon}</div>
+        <div class="card-icon">${icon(g.icon)}</div>
         <div class="card-meta">
           <div class="card-cat">${g.cat}</div>
           <div class="card-title">${g.title}</div>
@@ -1437,7 +1570,7 @@ function toggleMilestone(g,i){
   const nowComplete = goalDone(g);
   if(nowComplete && !wasComplete){
     gs.completeDate = Date.now();
-    toast(`"${g.title}" concluído! Mais uma conquista em 2027.`,{good:true,icon:"🎉"});
+    toast(`"${g.title}" concluído! Mais uma conquista em 2027.`,{good:true,icon:"trophy"});
     if(GOALS.every(goalDone)) celebrateAll();
   }else if(!nowComplete && wasComplete){
     gs.completeDate = null;
@@ -1471,11 +1604,13 @@ function renderDashboard(){
   $("#bigPct").textContent = totalPct;
   $("#bigDone").textContent = doneGoals;
   $("#bigMs").textContent = doneMs;
+  $("#bigGoalsTotal").textContent = GOALS.length;
+  $("#bigMsTotal").textContent = TOTAL_MS;
   $("#ringBar").style.strokeDashoffset = ringCirc - (ringCirc*totalPct/100);
 
-  $("#stDone").innerHTML = `${doneGoals}<small>/7</small>`;
-  $("#stDoneBar").style.width = (doneGoals/7*100)+"%";
-  $("#stMs").innerHTML = `${doneMs}<small>/28</small>`;
+  $("#stDone").innerHTML = `${doneGoals}<small>/${GOALS.length}</small>`;
+  $("#stDoneBar").style.width = (doneGoals/GOALS.length*100)+"%";
+  $("#stMs").innerHTML = `${doneMs}<small>/${TOTAL_MS}</small>`;
   $("#stMsBar").style.width = (doneMs/TOTAL_MS*100)+"%";
   $("#stStreak").innerHTML = `${totalPct}<small>%</small>`;
   $("#stStreakBar").style.width = totalPct+"%";
@@ -1526,7 +1661,7 @@ function renderTimeline(){
   const curMonth = is2027 ? now.getMonth() : -1;
   TIMELINE.forEach((t,i)=>{
     const m = el("div","tl-month"+(i===curMonth?" now":""));
-    m.innerHTML = `<div class="m-num">${t.n}/12</div><div class="m-name">${t.m}</div><div class="m-icon">${t.icon}</div><div class="m-text">${t.text}</div>`;
+    m.innerHTML = `<div class="m-num">${t.n}/12</div><div class="m-name">${t.m}</div><div class="m-icon">${icon(t.icon)}</div><div class="m-text">${t.text}</div>`;
     track.appendChild(m);
   });
 }
@@ -1565,7 +1700,7 @@ function renderVision(){
     const done = goalDone(g);
     const t = el("div","vtile"+(done?" done":""));
     t.style.setProperty("--c", g.soft);
-    t.innerHTML = `<div class="vic">${g.icon}</div><div class="vname">${g.title}</div><div class="vaff">${done?"Conquistado ✓":"Eu vou realizar isso em 2027"}</div>`;
+    t.innerHTML = `<div class="vic">${icon(g.icon)}</div><div class="vname">${g.title}</div><div class="vaff">${done?"Conquistado ✓":"Eu vou realizar isso em 2027"}</div>`;
     t.addEventListener("click",()=>{
       document.getElementById("metas").scrollIntoView({behavior:"smooth"});
       setFilter(g.cat);
@@ -1586,7 +1721,7 @@ function toggleTheme(){
   const next = cur==="dark"?"light":"dark";
   document.documentElement.setAttribute("data-theme",next);
   localStorage.setItem("theme27",next);
-  toast(`Tema ${next==="dark"?"escuro":"claro"} ativado.`,{icon:next==="dark"?"🌙":"☀️"});
+  toast(`Tema ${next==="dark"?"escuro":"claro"} ativado.`,{icon:next==="dark"?"moon":"sun"});
 }
 
 /* ============================================================
@@ -1600,7 +1735,7 @@ function exportData(){
   a.href = url; a.download = "objetivos-2027.json";
   document.body.appendChild(a); a.click(); a.remove();
   URL.revokeObjectURL(url);
-  toast("Progresso exportado em JSON.",{icon:"⬇",good:true});
+  toast("Progresso exportado em JSON.",{icon:"download",good:true});
 }
 function importData(file){
   const reader = new FileReader();
@@ -1611,19 +1746,19 @@ function importData(file){
       state = data;
       saveState();
       renderGoals(); renderDashboard(); renderVision();
-      toast("Progresso importado com sucesso!",{icon:"⬆",good:true});
+      toast("Progresso importado com sucesso!",{icon:"upload",good:true});
     }catch(err){
-      toast("Arquivo inválido. Use um JSON exportado por aqui.",{icon:"⚠"});
+      toast("Arquivo inválido. Use um JSON exportado por aqui.",{icon:"alert"});
     }
   };
   reader.readAsText(file);
 }
 function resetAll(){
-  if(Object.keys(state).length===0){ toast("Você ainda não marcou nada. Bora começar! 🚀",{icon:"💡"}); return; }
+  if(Object.keys(state).length===0){ toast("Você ainda não marcou nada. Bora começar!",{icon:"lightbulb"}); return; }
   state = {};
   saveState();
   renderGoals(); renderDashboard(); renderVision();
-  toast("Progresso reiniciado. Um novo começo para 2027! 💪",{icon:"↺",good:true});
+  toast("Progresso reiniciado. Um novo começo para 2027!",{icon:"rotate",good:true});
 }
 
 /* ============================================================
@@ -1653,7 +1788,7 @@ function celebrateAll(){
       shape:Math.random()<0.4?"circle":"rect"
     });
   }
-  toast("VOCÊ CONQUISTOU TODOS OS 7 OBJETIVOS! 2027 É SEU!",{good:true,icon:"🏆",duration:6000});
+  toast("VOCÊ CONQUISTOU TODOS OS 8 OBJETIVOS! 2027 É SEU!",{good:true,icon:"trophy",duration:6000});
   cancelAnimationFrame(cfAnim);
   cfLoop();
 }
@@ -1769,7 +1904,7 @@ $("#qPrev").addEventListener("click",()=>{ goQuote(qIndex-1); startCarousel(); }
 $("#qNext").addEventListener("click",()=>{ goQuote(qIndex+1); startCarousel(); });
 $("#habitReset").addEventListener("click",()=>{
   state.habits={}; saveState(); renderHabits();
-  toast("Dia zerado. Bora recomeçar os hábitos! ⚡",{icon:"↺"});
+  toast("Dia zerado. Bora recomeçar os hábitos!",{icon:"rotate"});
 });
 
 /* keyboard: T theme, ←/→ quotes, Esc toasts */
@@ -1809,45 +1944,45 @@ const COMMITMENTS = [
 ];
 
 const PRINCIPLES = [
-  {icon:"🎯",name:"Foco",desc:"Uma meta de cada vez, com atenção total.",color:"rgba(124,92,255,.3)"},
-  {icon:"🧱",name:"Disciplina",desc:"Fazer mesmo quando a motivação acabar.",color:"rgba(34,211,238,.3)"},
-  {icon:"🐢",name:"Paciência",desc:"Conquistas grandes levam o tempo que precisam.",color:"rgba(52,211,153,.3)"},
-  {icon:"🦁",name:"Coragem",desc:"Encarar o difícil antes que ele cresça.",color:"rgba(245,158,11,.3)"},
-  {icon:"🙏",name:"Gratidão",desc:"Reconhecer o que já conquistei a cada passo.",color:"rgba(251,113,133,.3)"},
-  {icon:"⚡",name:"Ação",desc:"Plano sem ação é só um desejo. Executar sempre.",color:"rgba(244,114,182,.3)"}
+  {icon:"target",name:"Foco",desc:"Uma meta de cada vez, com atenção total.",color:"rgba(124,92,255,.3)"},
+  {icon:"repeat",name:"Disciplina",desc:"Fazer mesmo quando a motivação acabar.",color:"rgba(34,211,238,.3)"},
+  {icon:"hourglass",name:"Paciência",desc:"Conquistas grandes levam o tempo que precisam.",color:"rgba(52,211,153,.3)"},
+  {icon:"shield",name:"Coragem",desc:"Encarar o difícil antes que ele cresça.",color:"rgba(245,158,11,.3)"},
+  {icon:"sparkles",name:"Gratidão",desc:"Reconhecer o que já conquistei a cada passo.",color:"rgba(251,113,133,.3)"},
+  {icon:"zap",name:"Ação",desc:"Plano sem ação é só um desejo. Executar sempre.",color:"rgba(244,114,182,.3)"}
 ];
 
 const HABITS = [
-  {icon:"📚",label:"Estudar / revisar 30 minutos"},
-  {icon:"💧",label:"Beber 2 litros de água"},
-  {icon:"🏃",label:"Mover o corpo por 20 minutos"},
-  {icon:"😴",label:"Dormir 7h+ de qualidade"},
-  {icon:"💰",label:"Guardar um pouco (mesmo que pouco)"},
-  {icon:"❤️",label:"Cultivar um momento com quem amo"},
-  {icon:"📵",label:"Pausa das telas antes de dormir"},
-  {icon:"📝",label:"Revisar este painel de objetivos"}
+  {icon:"book",label:"Estudar / revisar 30 minutos"},
+  {icon:"droplet",label:"Beber 2 litros de água"},
+  {icon:"activity",label:"Mover o corpo por 20 minutos"},
+  {icon:"moon",label:"Dormir 7h+ de qualidade"},
+  {icon:"wallet",label:"Guardar um pouco (mesmo que pouco)"},
+  {icon:"users",label:"Cultivar um momento com quem amo"},
+  {icon:"phone-off",label:"Pausa das telas antes de dormir"},
+  {icon:"clipboard",label:"Revisar este painel de objetivos"}
 ];
 
 const REWARDS = [
-  {tier:"Nível 1",icon:"🌱",title:"Primeira vitória",desc:"Conclua 1 objetivo. A inércia acabou — você provou que consegue.",at:1,color:"rgba(52,211,153,.3)"},
-  {tier:"Nível 2",icon:"🚀",title:"Em ritmo",desc:"Conclua 3 objetivos. Você está voando rumo ao fim do ano.",at:3,color:"rgba(34,211,238,.3)"},
-  {tier:"Nível 3",icon:"👑",title:"Quase lendário",desc:"Conclua 5 objetivos. O fim já tem contornos de vitória.",at:5,color:"rgba(124,92,255,.3)"},
-  {tier:"Nível 4",icon:"🏆",title:"Lenda 2027",desc:"Conclua os 7 objetivos. Você fez tudo o que prometeu para si.",at:7,color:"rgba(245,158,11,.3)"}
+  {tier:"Nível 1",icon:"sprout",title:"Primeira vitória",desc:"Conclua 1 objetivo. A inércia acabou — você provou que consegue.",at:1,color:"rgba(52,211,153,.3)"},
+  {tier:"Nível 2",icon:"rocket",title:"Em ritmo",desc:"Conclua 3 objetivos. Você está voando rumo ao fim do ano.",at:3,color:"rgba(34,211,238,.3)"},
+  {tier:"Nível 3",icon:"crown",title:"Quase lendário",desc:"Conclua 6 objetivos. O fim já tem contornos de vitória.",at:6,color:"rgba(124,92,255,.3)"},
+  {tier:"Nível 4",icon:"trophy",title:"Lenda 2027",desc:"Conclua os 8 objetivos. Você fez tudo o que prometeu para si.",at:8,color:"rgba(245,158,11,.3)"}
 ];
 
 const FOCUS_MAP = [
-  {m:"JAN",icon:"🎆",t:"Arranque",color:"rgba(124,92,255,.35)"},
-  {m:"FEV",icon:"📝",t:"Planejar",color:"rgba(167,139,250,.35)"},
-  {m:"MAR",icon:"🌱",t:"Começar",color:"rgba(52,211,153,.35)"},
-  {m:"ABR",icon:"💼",t:"Trabalho",color:"rgba(52,211,153,.35)"},
-  {m:"MAI",icon:"🎮",t:"PS5",color:"rgba(59,130,246,.35)"},
-  {m:"JUN",icon:"❤️",t:"Namoro",color:"rgba(251,113,133,.35)"},
-  {m:"JUL",icon:"🏖️",t:"Viagem",color:"rgba(34,211,238,.35)"},
-  {m:"AGO",icon:"🚗",t:"Automóvel",color:"rgba(245,158,11,.35)"},
-  {m:"SET",icon:"📚",t:"Faculdade",color:"rgba(167,139,250,.35)"},
-  {m:"OUT",icon:"🏜️",t:"Jogos",color:"rgba(244,114,182,.35)"},
-  {m:"NOV",icon:"🏆",t:"Fechar",color:"rgba(124,92,255,.35)"},
-  {m:"DEZ",icon:"🎉",t:"Celebrar",color:"rgba(245,158,11,.35)"}
+  {m:"JAN",icon:"sparkles",t:"Arranque",color:"rgba(124,92,255,.35)"},
+  {m:"FEV",icon:"edit",t:"Planejar",color:"rgba(167,139,250,.35)"},
+  {m:"MAR",icon:"id-card",t:"CNH",color:"rgba(20,184,166,.35)"},
+  {m:"ABR",icon:"briefcase",t:"Trabalho",color:"rgba(52,211,153,.35)"},
+  {m:"MAI",icon:"gamepad",t:"PS5",color:"rgba(59,130,246,.35)"},
+  {m:"JUN",icon:"heart",t:"Namoro",color:"rgba(251,113,133,.35)"},
+  {m:"JUL",icon:"plane",t:"Viagem",color:"rgba(34,211,238,.35)"},
+  {m:"AGO",icon:"car",t:"Auto",color:"rgba(245,158,11,.35)"},
+  {m:"SET",icon:"book",t:"Faculdade",color:"rgba(167,139,250,.35)"},
+  {m:"OUT",icon:"joystick",t:"Jogos",color:"rgba(244,114,182,.35)"},
+  {m:"NOV",icon:"target",t:"Fechar",color:"rgba(124,92,255,.35)"},
+  {m:"DEZ",icon:"trophy",t:"Celebrar",color:"rgba(245,158,11,.35)"}
 ];
 
 const SHORTCUTS = [
@@ -1858,16 +1993,16 @@ const SHORTCUTS = [
 ];
 
 const INSIGHTS = [
-  {icon:"📊",title:"28 marcos no total",text:"São 7 objetivos × 4 passos cada. Parece muito, mas dá menos de 2,5 marcos por mês."},
-  {icon:"🗓️",title:"365 dias de oportunidade",text:"Cada dia de 2027 é uma chance de riscar um marco. Falhar um dia não acaba o ano."},
-  {icon:"🧩",title:"Tudo se conecta",text:"Trabalhar paga o PS5 e o automóvel. O PS5 libera os jogos. Tudo vira um ciclo virtuoso."},
-  {icon:"📈",title:"Progresso composto",text:"Concluir 1% a mais por dia multiplica. Pequenos passos viram grandes saltos."},
-  {icon:"🧠",title:"Mente primeiro",text:"O cérebro persegue o que você vê. Por isso o quadro de visão existe — olhe todo dia."},
-  {icon:"🎁",title:"Recompensas mentais",text:"Cada objetivo concluído libera dopamina de verdade. Use isso como combustível."},
-  {icon:"⏰",title:"Tempo é o único ativo não renovável",text:"As horas de 2027 vão passar de qualquer jeito. A questão é como você vai gastá-las."},
-  {icon:"🎯",title:"Específico vence vago",text:"'Comprar PS5 até maio' é meta. 'Comprar um PS5' é desejo. Datas e marcos transformam sonho em plano."},
-  {icon:"🪞",title:"Revise toda semana",text:"Cinco minutos aos domingos neste painel impedem que o ano escape pelos dedos."},
-  {icon:"🛡️",title:"Plano B sem culpa",text:"Se uma meta travar, ajuste o marco — não abandone. Flexibilidade é parte da estratégia."}
+  {icon:"target",title:"32 marcos no total",text:"São 8 objetivos × 4 passos cada. Parece muito, mas dá menos de 3 marcos por mês."},
+  {icon:"hourglass",title:"365 dias de oportunidade",text:"Cada dia de 2027 é uma chance de riscar um marco. Falhar um dia não acaba o ano."},
+  {icon:"zap",title:"Tudo se conecta",text:"Trabalhar paga o PS5 e o automóvel. A CNH libera a estrada. Tudo vira um ciclo virtuoso."},
+  {icon:"trending",title:"Progresso composto",text:"Concluir 1% a mais por dia multiplica. Pequenos passos viram grandes saltos."},
+  {icon:"sparkles",title:"Mente primeiro",text:"O cérebro persegue o que você vê. Por isso o quadro de visão existe — olhe todo dia."},
+  {icon:"trophy",title:"Recompensas mentais",text:"Cada objetivo concluído libera dopamina de verdade. Use isso como combustível."},
+  {icon:"repeat",title:"Tempo é o único ativo não renovável",text:"As horas de 2027 vão passar de qualquer jeito. A questão é como você vai gastá-las."},
+  {icon:"edit",title:"Específico vence vago",text:"'Comprar PS5 até maio' é meta. 'Comprar um PS5' é desejo. Datas e marcos transformam sonho em plano."},
+  {icon:"book",title:"Revise toda semana",text:"Cinco minutos aos domingos neste painel impedem que o ano escape pelos dedos."},
+  {icon:"shield",title:"Plano B sem culpa",text:"Se uma meta travar, ajuste o marco — não abandone. Flexibilidade é parte da estratégia."}
 ];
 
 /* ============================================================
@@ -1887,7 +2022,7 @@ function renderCommitments(){
       renderCommitments();
       const done=COMMITMENTS.filter((_,idx)=>st[idx]).length;
       if(done===COMMITMENTS.length && !signed){
-        toast("Manifesto assinado! O pacto com 2027 está selado. 🤝",{good:true,icon:"📜"});
+        toast("Manifesto assinado! O pacto com 2027 está selado.",{good:true,icon:"sparkles"});
       }
     });
     list.appendChild(row);
@@ -1905,7 +2040,7 @@ function renderPrinciples(){
   PRINCIPLES.forEach(p=>{
     const c=el("div","principle");
     c.style.setProperty("--p",p.color);
-    c.innerHTML=`<div class="pic">${p.icon}</div><div class="pname">${p.name}</div><div class="pdesc">${p.desc}</div>`;
+    c.innerHTML=`<div class="pic">${icon(p.icon)}</div><div class="pname">${p.name}</div><div class="pdesc">${p.desc}</div>`;
     wrap.appendChild(c);
   });
 }
@@ -1920,7 +2055,7 @@ function renderHabits(){
   HABITS.forEach((h,i)=>{
     const done=!!st[i];
     const row=el("div","habit"+(done?" done":""));
-    row.innerHTML=`<div class="hbox"></div><div class="hicon">${h.icon}</div><div class="hlabel">${h.label}</div>`;
+    row.innerHTML=`<div class="hbox"></div><div class="hicon">${icon(h.icon)}</div><div class="hlabel">${h.label}</div>`;
     row.addEventListener("click",()=>{
       st[i]=!st[i];
       saveState();
@@ -1942,7 +2077,7 @@ function renderRewards(){
     const unlocked=doneGoals>=r.at;
     const c=el("div","reward"+(unlocked?" unlocked":" locked"));
     c.style.setProperty("--r",r.color);
-    c.innerHTML=`<div class="rlock">${unlocked?"🔓":"🔒"}</div><div class="ric">${r.icon}</div><div class="rtier">${r.tier}</div><div class="rtitle">${r.title}</div><div class="rdesc">${r.desc}</div>`;
+    c.innerHTML=`<div class="rlock">${icon(unlocked?"unlock":"lock")}</div><div class="ric">${icon(r.icon)}</div><div class="rtier">${r.tier}</div><div class="rtitle">${r.title}</div><div class="rdesc">${r.desc}</div>`;
     wrap.appendChild(c);
   });
 }
@@ -1958,7 +2093,7 @@ function renderFocusMap(){
   FOCUS_MAP.forEach((f,i)=>{
     const c=el("div","focus-cell"+(i===curMonth?" now":""));
     c.style.setProperty("--fc",f.color);
-    c.innerHTML=`<div class="fm-icon">${f.icon}</div><div class="fm-m">${f.m}</div><div class="fm-t">${f.t}</div>`;
+    c.innerHTML=`<div class="fm-icon">${icon(f.icon)}</div><div class="fm-m">${f.m}</div><div class="fm-t">${f.t}</div>`;
     wrap.appendChild(c);
   });
 }
@@ -1978,7 +2113,7 @@ function renderInsights(){
   const wrap=$("#insights"); wrap.innerHTML="";
   INSIGHTS.forEach(i=>{
     const c=el("div","insight");
-    c.innerHTML=`<div class="iicon">${i.icon}</div><div class="ititle">${i.title}</div><div class="itext">${i.text}</div>`;
+    c.innerHTML=`<div class="iicon">${icon(i.icon)}</div><div class="ititle">${i.title}</div><div class="itext">${i.text}</div>`;
     wrap.appendChild(c);
   });
 }
