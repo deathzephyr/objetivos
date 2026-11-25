@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meus Objetivos para 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#0b1020;
+    --bg-2:#131a36;
+    --bg-3:#1b1340;
+    --card:rgba(255,255,255,.05);
+    --card-border:rgba(255,255,255,.10);
+    --card-border-hi:rgba(255,255,255,.22);
+    --text:#eef2ff;
+    --muted:#9aa6c7;
+    --accent:#7c5cff;
+    --accent-2:#22d3ee;
+    --good:#34d399;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.65);
+    --radius:22px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(124,92,255,.35), transparent 60%),
+      radial-gradient(900px 600px at 0% 20%, rgba(34,211,238,.18), transparent 55%),
+      radial-gradient(1000px 800px at 50% 120%, rgba(236,72,153,.20), transparent 60%),
+      linear-gradient(160deg,var(--bg-1),var(--bg-2) 55%,var(--bg-3));
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:clamp(20px,4vw,46px) clamp(16px,4vw,36px) 80px;
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    text-align:center;
+    padding:clamp(20px,5vw,40px) 0 8px;
+  }
+  .kicker{
+    display:inline-block;
+    font-size:clamp(.7rem,2.4vw,.85rem);
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    background:rgba(34,211,238,.10);
+    border:1px solid rgba(34,211,238,.30);
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  h1{
+    font-family:'Space Grotesk','Poppins',sans-serif;
+    font-weight:700;
+    font-size:clamp(2rem,7vw,4rem);
+    line-height:1.05;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,#fff,#cdd6ff 40%,#7c5cff 70%,#22d3ee);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .year{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(3.2rem,16vw,9rem);
+    line-height:.9;
+    letter-spacing:-.04em;
+    margin:6px 0 4px;
+    background:linear-gradient(180deg,#ffffff 0%,#9fb4ff 60%,#5b6bd8 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 60px rgba(124,92,255,.35);
+  }
+  .subtitle{
+    max-width:620px;
+    margin:14px auto 0;
+    color:var(--muted);
+    font-size:clamp(.95rem,2.6vw,1.1rem);
+    font-weight:300;
+  }
+  .subtitle b{color:#dfe6ff;font-weight:600}
+
+  /* ---------- PROGRESS ---------- */
+  .progress-card{
+    margin:clamp(28px,5vw,42px) auto 8px;
+    max-width:920px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-radius:var(--radius);
+    padding:clamp(20px,4vw,30px);
+    display:flex;
+    align-items:center;
+    gap:clamp(18px,4vw,34px);
+    box-shadow:var(--shadow);
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .ring{
+    position:relative;
+    width:130px;
+    height:130px;
+    flex:0 0 auto;
+  }
+  .ring svg{transform:rotate(-90deg);width:100%;height:100%}
+  .ring .track{stroke:rgba(255,255,255,.08);fill:none;stroke-width:10}
+  .ring .bar{
+    stroke:url(#grad);fill:none;stroke-width:10;stroke-linecap:round;
+    transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1);
+    filter:drop-shadow(0 0 6px rgba(124,92,255,.6));
+  }
+  .ring .center{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+  }
+  .ring .pct{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.9rem;font-weight:700;line-height:1;
+  }
+  .ring .pct small{font-size:.8rem;color:var(--muted);font-weight:500}
+  .progress-meta{flex:1 1 260px;min-width:220px}
+  .progress-meta h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(1.05rem,3vw,1.35rem);font-weight:600;margin-bottom:6px;
+  }
+  .progress-meta p{color:var(--muted);font-size:.95rem;font-weight:300}
+  .progress-meta .count{
+    color:#fff;font-weight:600;
+  }
+  .reset-btn{
+    margin-top:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--card-border);
+    color:var(--muted);
+    padding:9px 16px;border-radius:12px;cursor:pointer;
+    font-family:inherit;font-size:.82rem;font-weight:500;
+    transition:.25s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .reset-btn:hover{color:#fff;border-color:var(--card-border-hi);background:rgba(255,255,255,.10)}
+
+  /* ---------- GOALS ---------- */
+  .section-title{
+    text-align:center;
+    margin:clamp(40px,6vw,60px) 0 8px;
+  }
+  .section-title h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(1.3rem,4vw,1.9rem);font-weight:600;
+  }
+  .section-title p{color:var(--muted);font-weight:300;margin-top:6px;font-size:.95rem}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:clamp(16px,2.5vw,22px);
+    margin-top:clamp(22px,3vw,32px);
+  }
+
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    padding:clamp(20px,3vw,26px);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    overflow:hidden;
+    transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .card::before{
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(180px 140px at 100% 0,var(--c,rgba(124,92,255,.35)),transparent 70%);
+    opacity:.5;pointer-events:none;transition:opacity .3s;
+  }
+  .card:hover{transform:translateY(-6px);border-color:var(--card-border-hi)}
+  .card:hover::before{opacity:.85}
+
+  .card.done{
+    border-color:rgba(52,211,153,.55);
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.65),0 0 0 1px rgba(52,211,153,.20) inset;
+  }
+  .card.done::before{
+    background:radial-gradient(220px 160px at 100% 0,rgba(52,211,153,.45),transparent 70%);
+    opacity:.9;
+  }
+
+  .top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .icon{
+    width:54px;height:54px;border-radius:15px;flex:0 0 auto;
+    display:grid;place-items:center;font-size:1.7rem;
+    background:linear-gradient(145deg,var(--c-soft,rgba(124,92,255,.25)),rgba(255,255,255,.04));
+    border:1px solid var(--c-line,rgba(124,92,255,.30));
+    transition:.3s;
+  }
+  .card.done .icon{filter:saturate(1.2)}
+  .cat{
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
+  .card h4{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.18rem;font-weight:600;margin-top:2px;line-height:1.2;
+  }
+  .desc{
+    color:var(--muted);font-size:.92rem;font-weight:300;
+    margin-bottom:18px;min-height:42px;
+  }
+
+  .foot{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    border-top:1px solid var(--card-border);padding-top:14px;
+  }
+  .check{
+    -webkit-appearance:none;appearance:none;
+    width:26px;height:26px;border-radius:9px;flex:0 0 auto;
+    border:2px solid var(--c-line,rgba(124,92,255,.40));
+    background:rgba(255,255,255,.04);cursor:pointer;position:relative;
+    transition:.25s;
+  }
+  .check:hover{border-color:#fff}
+  .check:checked{
+    background:linear-gradient(145deg,#34d399,#10b981);
+    border-color:#34d399;
+  }
+  .check:checked::after{
+    content:"";position:absolute;left:8px;top:4px;width:7px;height:12px;
+    border:solid #04130d;border-width:0 3px 3px 0;transform:rotate(45deg);
+  }
+  .status{
+    font-size:.82rem;font-weight:500;color:var(--muted);
+  }
+  .card.done .status{color:#34d399;font-weight:600}
+  .card.done h4{color:#eafff4}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;margin-top:clamp(50px,7vw,80px);
+    color:var(--muted);font-size:.85rem;font-weight:300;
+  }
+  footer .quote{
+    max-width:560px;margin:0 auto 14px;
+    font-style:italic;color:#cdd6ff;font-size:.95rem;font-weight:400;
+  }
+
+  /* ---------- CELEBRATION ---------- */
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+  .toast{
+    position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(30px);
+    background:linear-gradient(135deg,#34d399,#10b981);
+    color:#042014;padding:14px 22px;border-radius:14px;font-weight:600;
+    box-shadow:0 18px 40px -12px rgba(16,185,129,.6);
+    opacity:0;pointer-events:none;transition:.4s cubic-bezier(.22,1,.36,1);
+    z-index:60;text-align:center;max-width:90vw;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:640px){
+    .progress-card{flex-direction:column;text-align:center}
+    .progress-meta{text-align:center}
+    .ring{order:-1}
+    .desc{min-height:0}
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="kicker">Plano de Vida · Ano Novo</span>
+    <h1>Meus Objetivos</h1>
+    <div class="year">2027</div>
+    <p class="subtitle">Sete metas importantes para conquistar, viver e celebrar. <b>Marque cada uma conforme realizar</b> — este é o ano de fechar todos os ciclos com chave de ouro.</p>
+  </header>
+
+  <!-- PROGRESS -->
+  <section class="progress-card" aria-label="Progresso geral">
+    <div class="ring">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7c5cff"/>
+            <stop offset="50%" stop-color="#22d3ee"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="60" cy="60" r="50"></circle>
+        <circle class="bar" id="ringBar" cx="60" cy="60" r="50"
+          stroke-dasharray="314.16" stroke-dashoffset="314.16"></circle>
+      </svg>
+      <div class="center">
+        <div class="pct"><span id="pctNum">0</span><small>%</small></div>
+      </div>
+    </div>
+    <div class="progress-meta">
+      <h2>Seu progresso em 2027</h2>
+      <p>Você concluiu <span class="count"><span id="doneCount">0</span> de 7</span> objetivos. Continue firme — cada conquista te aproxima de um ano inesquecível.</p>
+      <button class="reset-btn" id="resetBtn" title="Recomeçar a marcação">
+        ↺ Reiniciar progresso
+      </button>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <h3>As 7 metas do ano</h3>
+    <p>Toque em um card ou na caixa de seleção para marcar como concluído.</p>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    <p class="quote">"O futuro pertence a quem acredita na beleza dos próprios sonhos."</p>
+    <p>Feito para acompanhar a sua jornada em 2027 · Os dados ficam salvos neste navegador.</p>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const goals = [
+    {
+      id:"ps5",
+      icon:"🎮",
+      title:"PlayStation 5",
+      cat:"Conquista",
+      desc:"Comprar meu próprio PS5 e mergulhar na nova geração de jogos com gráficos de tirar o fôlego.",
+      color:"#3b82f6", soft:"rgba(59,130,246,.25)", line:"rgba(59,130,246,.45)"
+    },
+    {
+      id:"auto",
+      icon:"🚗",
+      title:"Automóvel próprio",
+      cat:"Patrimônio",
+      desc:"Adquirir um carro ou moto para ganhar mobilidade, independência e liberdade de ir e vir.",
+      color:"#f59e0b", soft:"rgba(245,158,11,.25)", line:"rgba(245,158,11,.45)"
+    },
+    {
+      id:"trabalho",
+      icon:"💼",
+      title:"Trabalhar",
+      cat:"Profissional",
+      desc:"Manter-me ativo no trabalho, gerando renda, experiência e construindo o meu futuro.",
+      color:"#34d399", soft:"rgba(52,211,153,.25)", line:"rgba(52,211,153,.45)"
+    },
+    {
+      id:"faculdade",
+      icon:"🎓",
+      title:"Continuar bem na faculdade",
+      cat:"Estudos",
+      desc:"Manter boas notas e dedicação aos estudos, ficando cada vez mais perto da formatura.",
+      color:"#a78bfa", soft:"rgba(167,139,250,.25)", line:"rgba(167,139,250,.45)"
+    },
+    {
+      id:"namoro",
+      icon:"❤️",
+      title:"Continuar bem no namoro",
+      cat:"Relacionamento",
+      desc:"Cuidar do relacionamento com amor, diálogo e parceria — cultivando algo bonito e saudável.",
+      color:"#fb7185", soft:"rgba(251,113,133,.25)", line:"rgba(251,113,133,.45)"
+    },
+    {
+      id:"jogos",
+      icon:"🕹️",
+      title:"Jogar os jogos dos sonhos",
+      cat:"Lazer",
+      desc:"Jogar GTA VI, The Last of Us e Red Dead Redemption — os títulos que sempre tive vontade de viver.",
+      color:"#f472b6", soft:"rgba(244,114,182,.25)", line:"rgba(244,114,182,.45)"
+    },
+    {
+      id:"viagem",
+      icon:"✈️",
+      title:"Viajar para outro estado",
+      cat:"Experiência",
+      desc:"Conhecer um novo estado do Brasil e viver uma viagem inesquecível, cheia de descobertas.",
+      color:"#22d3ee", soft:"rgba(34,211,238,.25)", line:"rgba(34,211,238,.45)"
+    }
+  ];
+
+  const STORE_KEY = "objetivos2027";
+  const grid = document.getElementById("grid");
+  const ringBar = document.getElementById("ringBar");
+  const pctNum = document.getElementById("pctNum");
+  const doneCount = document.getElementById("doneCount");
+  const toast = document.getElementById("toast");
+  const CIRC = 2 * Math.PI * 50; // 314.16
+
+  let state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+
+  function fmtDate(ts){
+    const d = new Date(ts);
+    return d.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  }
+
+  function render(){
+    grid.innerHTML = "";
+    goals.forEach(g=>{
+      const done = !!state[g.id];
+      const card = document.createElement("article");
+      card.className = "card" + (done ? " done" : "");
+      card.style.setProperty("--c",g.color);
+      card.style.setProperty("--c-soft",g.soft);
+      card.style.setProperty("--c-line",g.line);
+      card.innerHTML = `
+        <div class="top">
+          <div class="icon">${g.icon}</div>
+          <div>
+            <div class="cat">${g.cat}</div>
+            <h4>${g.title}</h4>
+          </div>
+        </div>
+        <p class="desc">${g.desc}</p>
+        <div class="foot">
+          <label class="status">${done ? "✓ Concluído em "+fmtDate(state[g.id]) : "Em andamento"}</label>
+          <input type="checkbox" class="check" ${done?"checked":""} aria-label="Marcar ${g.title} como concluído">
+        </div>`;
+      const check = card.querySelector(".check");
+      const toggle = ()=>{
+        if(check.checked){
+          state[g.id] = Date.now();
+          showToast(`🏆 "${g.title}" concluído! Mais um passo rumo ao ano perfeito.`);
+        }else{
+          delete state[g.id];
+        }
+        save();
+        render();
+        update();
+        if(allDone()) celebrate();
+      };
+      check.addEventListener("change",toggle);
+      card.addEventListener("click",(e)=>{
+        if(e.target===check) return;
+        check.checked = !check.checked;
+        toggle();
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  function save(){ localStorage.setItem(STORE_KEY,JSON.stringify(state)); }
+
+  function update(){
+    const done = goals.filter(g=>state[g.id]).length;
+    const pct = Math.round(done/goals.length*100);
+    doneCount.textContent = done;
+    pctNum.textContent = pct;
+    ringBar.style.strokeDashoffset = CIRC - (CIRC*pct/100);
+  }
+
+  function allDone(){ return goals.every(g=>state[g.id]); }
+
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toast.classList.remove("show"),3200);
+  }
+
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+    if(Object.keys(state).length===0){ showToast("Você ainda não marcou nada. Bora começar! 🚀"); return; }
+    state = {};
+    save();
+    render();
+    update();
+    showToast("Progresso reiniciado. Um novo começo para 2027! 💪");
+  });
+
+  /* ---------- CONFETTI ---------- */
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  let confetti = [], animId = null;
+  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  resize(); addEventListener("resize",resize);
+
+  function celebrate(){
+    const colors = ["#7c5cff","#22d3ee","#34d399","#f472b6","#f59e0b","#fb7185"];
+    confetti = [];
+    for(let i=0;i<180;i++){
+      confetti.push({
+        x: innerWidth/2 + (Math.random()-.5)*120,
+        y: innerHeight/3,
+        vx: (Math.random()-.5)*14,
+        vy: Math.random()*-15 - 4,
+        g: 0.35 + Math.random()*0.2,
+        size: 6 + Math.random()*8,
+        rot: Math.random()*Math.PI,
+        vr: (Math.random()-.5)*.3,
+        color: colors[(Math.random()*colors.length)|0],
+        life: 1
+      });
+    }
+    showToast("🎉 VOCÊ CONQUISTOU TUDO! 2027 É SEU! 🎉");
+    cancelAnimationFrame(animId);
+    loop();
+  }
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive = false;
+    confetti.forEach(p=>{
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      p.life -= 0.006;
+      if(p.y < canvas.height+20 && p.life>0){
+        alive = true;
+        ctx.save();
+        ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.globalAlpha = Math.max(0,p.life);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+        ctx.restore();
+      }
+    });
+    if(alive){ animId = requestAnimationFrame(loop); }
+    else { ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+
+  /* init */
+  render();
+  update();
+</script>
+</body>
+</html>
